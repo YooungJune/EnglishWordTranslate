@@ -12,7 +12,7 @@ from .spiders.const import Const
 def combine_word(item):
     word = ''.join([item['word_name'] + '   ' + '<英' + item['phonetic_En'] + '> <美' + item['phonetic_Am'],
                     '>\n',
-                    item['paraphrase']])
+                    item['paraphrase']+item['sentense']+'\n','\n'])
     return word
 
 

@@ -25,8 +25,11 @@ def extract_phonetic(response):
     phonetic_nodes = response.xpath('.//span[@class="pronounce"]/span[@class="phonetic"]')
     phonetic_En = phonetic_nodes[0].xpath('./text()').extract_first()
     phonetic_Am = phonetic_nodes[1].xpath('./text()').extract_first()
-    return phonetic_En, phonetic_Am
-
+    sentense = response.xpath('.//div[@class="examples"]/p')
+    sentense2=str()
+    for i in range(int(len(sentense)/2)):
+        sentense2 += sentense[2*i].xpath('./text()').extract_first() + '\n'
+    return phonetic_En, phonetic_Am, sentense2
 
 # 提取释义
 def extract_paraphrase(response):
@@ -49,7 +52,7 @@ class MyspiderSpider(scrapy.Spider):
 
         item['word_name'] = extract_word_name(response)  # 提取单词名
 
-        item['phonetic_En'], item['phonetic_Am'] = extract_phonetic(response)  # 提取音标
+        item['phonetic_En'], item['phonetic_Am'] , item['sentense']= extract_phonetic(response)  # 提取音标
 
         item['paraphrase'] = extract_paraphrase(response)  # 提取释义
 

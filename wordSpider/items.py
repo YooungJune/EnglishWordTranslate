@@ -15,3 +15,4 @@ class WordspiderItem(scrapy.Item):
     phonetic_Am = scrapy.Field()   # 美式音标
     phonetic_En = scrapy.Field()   # 英式音标
     paraphrase = scrapy.Field()  # 释义
+    sentense = scrapy.Field()
